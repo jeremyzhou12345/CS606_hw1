@@ -1,0 +1,71 @@
+# When done, submit this entire file to the autograder.
+
+# Part 1
+
+def sum arr
+  # YOUR CODE HERE
+  arr.inject(0, :+)
+end
+
+def max_2_sum arr
+  # YOUR CODE HERE
+  arr.max(2).inject(0,:+)
+end
+
+def sum_to_n? arr, n
+  # YOUR CODE HERE
+  sum = arr.combination(2).map{|x,y| x+y}
+  return sum.include?n
+end
+
+# Part 2
+
+def hello(name)
+  # YOUR CODE HERE
+  say = "Hello, #{name}"
+  return say
+end
+
+def starts_with_consonant? s
+  # YOUR CODE HERE
+  if s.match(/\A(?=[^aeiou])(?=[a-z])/i)    #(?=) means what 
+    return true
+  else
+    return false
+  end
+end
+
+def binary_multiple_of_4? s
+  # YOUR CODE HERE
+  if(/[^01]/===s)
+    return false
+  elsif s.empty?
+    return false
+  elsif s.to_i(2)%4 == 0
+    return true
+  else
+    return false
+  end
+    
+end
+
+
+# Part 3
+
+class BookInStock
+# YOUR CODE HERE
+  attr_accessor :isbn, :price
+  def initialize(isbn, price)     #how to guarantee isbn to be strictly a string
+    raise ArgumentError.new("isbn is empty or price is less than 0") if isbn.empty? || price <= 0
+    @isbn = isbn      #however, @isbn current is not readable or writeable.we need methods to read or write @isbn 
+    @price = price    #in Ruby, .price should be a method, instead of accessing the instance variable 
+  end
+  
+  # def isbn
+  #   return @isbn
+  # end
+  def price_as_string
+    return format("$%.2f",@price)
+  end
+  
+end
